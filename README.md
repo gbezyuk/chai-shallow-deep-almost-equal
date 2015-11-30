@@ -1,9 +1,11 @@
-# chai-shallow-deep-equal
+# chai-shallow-deep-almost-equal
 
-Will shallowly perform a deep equal assertion. In other terms is consist of checking that an object, or objects graph, is contained within another one (see examples bellow).
+It's a fork of https://github.com/michelsalib/chai-shallow-deep-equal which adds .001 float treshold almost-equality feature.
 
-[![NPM version](https://badge.fury.io/js/chai-shallow-deep-equal.png)](http://badge.fury.io/js/chai-shallow-deep-equal)
-[![Build Status](https://travis-ci.org/michelsalib/chai-shallow-deep-equal.png?branch=master)](https://travis-ci.org/michelsalib/chai-shallow-deep-equal)
+Will shallowly perform a deep almost equal assertion. In other terms is consist of checking that an object, or objects graph, is contained within another one (see examples bellow).
+
+[![NPM version](https://badge.fury.io/js/chai-shallow-deep-almost-equal.png)](http://badge.fury.io/js/chai-shallow-deep-almost-equal)
+[![Build Status](https://travis-ci.org/gbezyuk/chai-shallow-deep-almost-equal.png?branch=master)](https://travis-ci.org/gbezyuk/chai-shallow-deep-almost-equal)
 
 ## Usage
 
@@ -11,35 +13,38 @@ Will shallowly perform a deep equal assertion. In other terms is consist of chec
 
 ```html
 <script src="chai.js"></script>
-<script src="chai-shallow-deep-equal.js"></script>
+<script src="chai-shallow-deep-almost-equal.js"></script>
 ```
 
 ### Node
 
 ```javascript
 var chai = require('chai');
-chai.use(require('chai-shallow-deep-equal'));
+chai.use(require('chai-shallow-deep-almost-equal'));
 ```
 
 ## Assertions
 
-ShallowDeepEqual is available for all chai assertion styles:
+ShallowDeepAlmostEqual is available for all chai assertion styles:
 
 ```javascript
-var a = {name: 'Michel', language: 'javascript'};
-var b = {name: 'Michel'};
+var a = {x: 10, y: 10};
+var b = {x: 10.001};
 
-a.should.shallowDeepEqual(b);
-expect(a).to.shallowDeepEqual(b);
-assert.shallowDeepEqual(a, b);
+a.should.ShallowDeepAlmostEqual(b);
+expect(a).to.ShallowDeepAlmostEqual(b);
+assert.ShallowDeepAlmostEqual(a, b);
 ```
 
 ## Example
 
 ```javascript
-assert.shallowDeepEqual({name: 'Michel', language: 'javascript'}, {name: 'Michel'}); // true
+assert.ShallowDeepAlmostEqual({x: 10, y: 10}, {x: 10.001}); // true
+assert.ShallowDeepAlmostEqual({x: 10, y: 10}, {x: 9.999}); // true
+// assert.ShallowDeepAlmostEqual({x: 10, y: 10}, {x: 9.9}); // fails
 
-assert.shallowDeepEqual({
+// the rest are the original shallowDeepEqualTests
+assert.ShallowDeepAlmostEqual({
   name: 'Michel',
   language: 'javascript',
   tags: [
@@ -52,7 +57,7 @@ assert.shallowDeepEqual({
     'developer'
   ]}); // true
 
-assert.shallowDeepEqual([
+assert.ShallowDeepAlmostEqual([
     {brand: 'apple', color: 'red'},
     {brand: 'samsung', color: 'blue'},
   ],
@@ -62,7 +67,7 @@ assert.shallowDeepEqual([
   1: {brand: 'samsung'},
   }); // true
 
-assert.shallowDeepEqual({
+assert.ShallowDeepAlmostEqual({
   name: 'Michel',
   age: undefined
   },

@@ -22,7 +22,9 @@
     }
 }(function (chai, utils) {
 
-    function shallowDeepEqual(expect, actual, path) {
+    function shallowDeepAlmostEqual(expect, actual, path) {
+
+        var treshhold = 0.001;
 
         // null value
         if (expect === null) {
@@ -43,9 +45,22 @@
         }
 
         // scalar description
-        if (/boolean|number|string/.test(typeof expect)) {
+        if (/boolean|string/.test(typeof expect)) {
             if (expect != actual) {
                 throw 'Expected to have "' + expect +'" but got "'+ actual +'" at path "'+ path +'".';
+            }
+
+            return true;
+        }
+
+        // numbers — here is some important 'almost equal' stuff
+        // TODO: configurable treshhold
+        if (typeof expect == 'number') {
+            if (typeof actual != 'number') {
+              throw 'Expected to have number but got "' + actual +'" at path "'+ path +'".';
+            }
+            if (Math.abs(expect - actual) > treshhold) {
+                throw 'Expected to have "' + expect +'+-0.001" but got "'+ actual +'" at path "'+ path +'".';
             }
 
             return true;
@@ -79,23 +94,23 @@
                 throw 'Expected "' + prop + '" field to be defined at path "' + path +  '".';
             }
 
-            shallowDeepEqual(expect[prop], actual[prop], path + (path == '/' ? '' : '/') + prop);
+            shallowDeepAlmostEqual(expect[prop], actual[prop], path + (path == '/' ? '' : '/') + prop);
         }
 
         return true;
     }
 
-    chai.Assertion.addMethod('shallowDeepEqual', function (expect) {
+    chai.Assertion.addMethod('shallowDeepAlmostEqual', function (expect) {
         try {
-            shallowDeepEqual(expect, this._obj, '/');
+            shallowDeepAlmostEqual(expect, this._obj, '/');
         }
         catch (msg) {
             this.assert(false, msg, undefined, expect, this._obj);
         }
     });
 
-    chai.assert.shallowDeepEqual = function(val, exp, msg) {
-        new chai.Assertion(val, msg).to.be.shallowDeepEqual(exp);
+    chai.assert.shallowDeepAlmostEqual = function(val, exp, msg) {
+        new chai.Assertion(val, msg).to.be.shallowDeepAlmostEqual(exp);
     }
 
 }));
