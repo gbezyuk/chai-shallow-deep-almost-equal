@@ -1,7 +1,7 @@
 {
-    "name": "chai-shallow-deep-equal",
+    "name": "chai-shallow-deep-almost-equal",
     "version": "1.3.0",
-    "description": "Shallow deep equal assertion for chai",
+    "description": "Shallow deep equal almost assertion for chai",
     "keywords": [
         "chai",
         "test",
@@ -9,14 +9,15 @@
         "assert",
         "testing",
         "shallow",
-        "deep"
+        "deep",
+        "almost"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/michelsalib/chai-shallow-deep-equal.git"
+        "url": "https://github.com/gbezyuk/chai-shallow-deep-almost-equal.git"
     },
     "bugs": {
-        "url": "https://github.com/michelsalib/chai-shallow-deep-equal/issues"
+        "url": "https://github.com/gbezyuk/chai-shallow-deep-almost-equal/issues"
     },
     "readmeFilename": "README.md",
     "devDependencies": {
@@ -29,14 +30,14 @@
     "scripts": {
         "test": "mocha --recursive -C -R spec"
     },
-    "main": "chai-shallow-deep-equal.js",
+    "main": "chai-shallow-deep-almost-equal.js",
     "directories": {
         "test": "test"
     },
     "author": {
-        "name": "Michel Salib",
-        "email": "michelsalib@hotmail.com",
-        "url": "http://michelsalib.com/"
+        "name": "Grigoriy Bezyuk",
+        "email": "me@gbezyuk.ru",
+        "url": "http://gbezyuk.ru/"
     },
     "licenses": [
         {
