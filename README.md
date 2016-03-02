@@ -31,20 +31,20 @@ ShallowDeepAlmostEqual is available for all chai assertion styles:
 var a = {x: 10, y: 10};
 var b = {x: 10.001};
 
-a.should.ShallowDeepAlmostEqual(b);
-expect(a).to.ShallowDeepAlmostEqual(b);
-assert.ShallowDeepAlmostEqual(a, b);
+a.should.shallowDeepAlmostEqual(b);
+expect(a).to.shallowDeepAlmostEqual(b);
+assert.shallowDeepAlmostEqual(a, b);
 ```
 
 ## Example
 
 ```javascript
-assert.ShallowDeepAlmostEqual({x: 10, y: 10}, {x: 10.001}); // true
-assert.ShallowDeepAlmostEqual({x: 10, y: 10}, {x: 9.999}); // true
+assert.shallowDeepAlmostEqual({x: 10, y: 10}, {x: 10.001}); // true
+assert.shallowDeepAlmostEqual({x: 10, y: 10}, {x: 9.999}); // true
 // assert.ShallowDeepAlmostEqual({x: 10, y: 10}, {x: 9.9}); // fails
 
 // the rest are the original shallowDeepEqualTests
-assert.ShallowDeepAlmostEqual({
+assert.shallowDeepAlmostEqual({
   name: 'Michel',
   language: 'javascript',
   tags: [
@@ -57,7 +57,7 @@ assert.ShallowDeepAlmostEqual({
     'developer'
   ]}); // true
 
-assert.ShallowDeepAlmostEqual([
+assert.shallowDeepAlmostEqual([
     {brand: 'apple', color: 'red'},
     {brand: 'samsung', color: 'blue'},
   ],
@@ -67,7 +67,7 @@ assert.ShallowDeepAlmostEqual([
   1: {brand: 'samsung'},
   }); // true
 
-assert.ShallowDeepAlmostEqual({
+assert.shallowDeepAlmostEqual({
   name: 'Michel',
   age: undefined
   },
